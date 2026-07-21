@@ -3,11 +3,10 @@ import {
   Routes,
   Route
 } from 'react-router-dom';
-
 import Home from './pages/Home';
 import EmpresaDetalle from './pages/EmpresaDetalle';
 import DashboardEmpresa from './pages/DashboardEmpresa';
-import Login from './pages/Login';
+import Login from './pages/LoginPage';
 import RegistroEmpresa from './pages/RegistroEmpresa';
 import CategoriaEmpresas from './pages/CategoriaEmpresas';
 import Admin from './pages/Admin';
