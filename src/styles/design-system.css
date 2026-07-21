@@ -1,0 +1,198 @@
+:root {
+  --ev-primary: #f0be08;
+  --ev-secondary: #6f45e8;
+  --ev-dark: #101827;
+  --ev-text: #1f2937;
+  --ev-muted: #6b7280;
+  --ev-bg: #f8fafc;
+  --ev-card: #ffffff;
+  --ev-border: #e5e7eb;
+  --ev-success: #22c55e;
+  --ev-danger: #ef4444;
+
+  --ev-radius-sm: 12px;
+  --ev-radius-md: 18px;
+  --ev-radius-lg: 24px;
+
+  --ev-shadow: 0 14px 35px rgba(0,0,0,.08);
+  --ev-shadow-hover: 0 18px 45px rgba(0,0,0,.12);
+}
+
+/* Cards */
+.ev-card,
+.detalle-card,
+.contact-card,
+.rating-card,
+.admin-card,
+.admin-table-card,
+.planes-admin,
+.videos-admin,
+.actividad-card {
+  background: var(--ev-card);
+  border: 1px solid var(--ev-border);
+  border-radius: var(--ev-radius-lg);
+  box-shadow: var(--ev-shadow);
+}
+
+/* Botones base */
+button,
+.btn,
+.btn-cotizar,
+.btn-phone,
+.btn-whatsapp-detalle,
+.btn-home-dashboard,
+.approve-btn,
+.reject-btn {
+  transition: .25s ease;
+}
+
+button:hover,
+.btn:hover,
+.btn-cotizar:hover,
+.btn-phone:hover,
+.btn-whatsapp-detalle:hover,
+.btn-home-dashboard:hover,
+.approve-btn:hover,
+.reject-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--ev-shadow-hover);
+}
+
+/* Inputs */
+input,
+textarea,
+select {
+  border: 1px solid var(--ev-border);
+  border-radius: var(--ev-radius-sm);
+  outline: none;
+  transition: .2s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--ev-secondary);
+  box-shadow: 0 0 0 4px rgba(111,69,232,.12);
+}
+
+/* Imágenes */
+img {
+  max-width: 100%;
+}
+/* ===== BOTONES EVENTIA ===== */
+
+.ev-btn {
+  min-height: 46px;
+  padding: 0 18px;
+  border: none;
+  border-radius: 14px;
+  font-weight: 900;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.ev-btn-primary {
+  background: var(--ev-primary);
+  color: var(--ev-dark);
+}
+
+.ev-btn-secondary {
+  background: var(--ev-secondary);
+  color: white;
+}
+
+.ev-btn-success {
+  background: var(--ev-success);
+  color: white;
+}
+
+.ev-btn-danger {
+  background: var(--ev-danger);
+  color: white;
+}
+
+.ev-btn-ghost {
+  background: #f8fafc;
+  color: var(--ev-dark);
+  border: 1px solid var(--ev-border);
+}
+
+/* ===== TARJETAS EVENTIA ===== */
+
+.ev-panel {
+  background: white;
+  border-radius: 24px;
+  border: 1px solid var(--ev-border);
+  box-shadow: var(--ev-shadow);
+  padding: 26px;
+}
+
+/* ===== TITULOS DE SECCIÓN ===== */
+
+.ev-section-title span {
+  color: var(--ev-secondary);
+  font-weight: 900;
+}
+
+.ev-section-title h2 {
+  margin: 6px 0;
+  color: var(--ev-dark);
+  font-size: 28px;
+}
+
+.ev-section-title p {
+  margin: 0;
+  color: var(--ev-muted);
+  font-weight: 700;
+}
+/* ===== ANIMACIONES EVENTIA ===== */
+
+@keyframes evFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes evFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes evSoftZoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.03);
+  }
+}
+
+.ev-animate-up {
+  animation: evFadeUp .55s ease both;
+}
+
+.ev-animate-in {
+  animation: evFadeIn .45s ease both;
+}
+
+.ev-hover-lift {
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.ev-hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--ev-shadow-hover);
+}

@@ -1,0 +1,82 @@
+.videos-admin {
+  margin-top: 28px;
+  background: white;
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: 0 14px 35px rgba(0,0,0,.06);
+}
+
+.videos-admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.videos-admin-header h2 {
+  margin: 0;
+}
+
+.videos-admin-header span {
+  background: #fff4cc;
+  color: #101827;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-weight: 900;
+}
+
+.video-admin-card {
+  display: grid;
+  grid-template-columns: 1fr 260px 180px;
+  gap: 18px;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.video-admin-card video {
+  width: 260px;
+  height: 145px;
+  object-fit: cover;
+  border-radius: 16px;
+  background: #111;
+}
+
+.video-actions {
+  display: grid;
+  gap: 10px;
+}
+
+.video-actions button {
+  border: none;
+  border-radius: 12px;
+  padding: 12px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.video-actions .approve {
+  background: #22c55e;
+  color: white;
+}
+
+.video-actions .reject {
+  background: #ef4444;
+  color: white;
+}
+
+.videos-empty {
+  padding: 22px;
+  border-radius: 18px;
+  background: #f8fafc;
+  color: #6b7280;
+  font-weight: 800;
+}
+.video-admin-card video {
+  width: 100%;
+  max-width: 420px;
+  min-height: 220px;
+  background: #000;
+  border-radius: 16px;
+  object-fit: contain;
+}

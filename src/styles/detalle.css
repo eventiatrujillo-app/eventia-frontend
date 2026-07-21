@@ -1,0 +1,71 @@
+.detalle-container{
+  max-width:1200px;
+  margin:auto;
+  background:white;
+  min-height:100vh;
+}
+
+.detalle-portada{
+  width:100%;
+  height:280px;
+  object-fit:cover;
+  border-radius:0 0 20px 20px;
+}
+.detalle-info{
+  padding:30px;
+  text-align:center;
+}
+
+.detalle-logo{
+  width:140px;
+  height:140px;
+  border-radius:50%;
+  object-fit:cover;
+  border:5px solid white;
+  margin-top:-70px;
+}
+
+.detalle-descripcion{
+  font-size:18px;
+  color:#555;
+}
+
+.detalle-datos{
+  margin-top:20px;
+}
+
+.detalle-datos p{
+  font-size:18px;
+}
+
+.btn-contactar{
+  display:inline-block;
+  margin-top:25px;
+  padding:15px 30px;
+  background:#25D366;
+  color:white;
+  text-decoration:none;
+  border-radius:12px;
+  font-size:18px;
+}
+
+.detalle-info{
+  text-align:center;
+  padding:20px;
+  margin-top:-20px;
+}
+
+.galeria-grid{
+  display:grid;
+  grid-template-columns:
+    repeat(auto-fill,minmax(250px,1fr));
+  gap:15px;
+  margin-top:20px;
+}
+
+.foto-galeria{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  border-radius:12px;
+}

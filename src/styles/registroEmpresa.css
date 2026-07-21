@@ -1,0 +1,653 @@
+* {
+  box-sizing: border-box;
+}
+
+.registro-page {
+  min-height: 100vh;
+  background: #f6f5fb;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 50px;
+  padding: 45px 70px;
+  font-family: Arial, sans-serif;
+}
+
+/* LADO IZQUIERDO */
+
+.registro-left {
+  min-height: calc(100vh - 90px);
+  border-radius: 32px;
+  padding: 55px;
+  color: white;
+  background:
+    linear-gradient(135deg, rgba(234, 209, 84, 0.92), rgba(86,54,201,.86)),
+    url('https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=1400&q=80');
+  background-size: cover;
+  background-position:left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.registro-brand {
+  display: flex;
+  align-items:center;
+  gap: 8px;
+  text-decoration: none;
+  color: white;
+}
+
+.registro-brand img {
+  width: 85px;
+  height: 85px;
+  object-fit: contain;
+  background: white;
+  border-radius: 18px;
+  padding: 8px;
+}
+
+.registro-brand strong {
+  display: block;
+  font-size: 39px;
+  font-weight: 900;
+  line-height: .9;
+  color: #f0be08;
+}
+
+.registro-brand span {
+  display: block;
+  margin-top: 8px;
+  color: #f4f4f4;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.registro-hero-text h1 {
+  font-size: 48px;
+  line-height: 1.08;
+  margin-bottom: 18px;
+}
+
+.registro-hero-text p {
+  font-size: 18px;
+  line-height: 1.7;
+  color: #f3f4f6;
+  max-width: 560px;
+}
+
+.registro-benefits {
+  margin-top: 28px;
+  display: grid;
+  gap: 12px;
+}
+
+.registro-benefits span {
+  background: rgba(255,255,255,.14);
+  padding: 14px 18px;
+  border-radius: 14px;
+}
+
+/* LADO DERECHO */
+
+.registro-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.registro-card {
+  width: 100%;
+  max-width: 760px;
+  background: white;
+  border-radius: 30px;
+  padding: 38px;
+  box-shadow: 0 18px 45px rgba(0,0,0,.10);
+}
+
+.registro-card-header {
+  margin-bottom: 25px;
+}
+
+.registro-card-header h2 {
+  font-size: 36px;
+  margin: 0 0 8px;
+  color: #101827;
+}
+
+.registro-card-header p {
+  margin: 0;
+  color: #6b7280;
+}
+
+/* FORM */
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.form-grid input,
+.form-grid textarea,
+.form-grid select,
+.payment-section input,
+.payment-section select {
+  width: 100%;
+  min-height: 54px;
+  border: 1px solid #dfe3eb;
+  background: #f8f8fb;
+  padding: 0 16px;
+  border-radius: 15px;
+  font-size: 15px;
+  outline: none;
+}
+
+.form-grid textarea {
+  grid-column: span 2;
+  height: 120px;
+  padding: 16px;
+  resize: none;
+}
+
+.form-grid input:focus,
+.form-grid textarea:focus,
+.form-grid select:focus,
+.payment-section input:focus,
+.payment-section select:focus {
+  border-color: #f0be08;
+  background: white;
+  box-shadow: 0 0 0 4px rgba(240,190,8,.16);
+}
+
+/* PASSWORD */
+
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper input {
+  padding-right: 54px;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* UPLOAD */
+
+.upload-section {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.upload-card {
+  border: 2px dashed #e3d389;
+  background: #fffaf0;
+  border-radius: 18px;
+  padding: 20px;
+  cursor: pointer;
+  display: grid;
+  gap: 8px;
+  transition: .2s ease;
+}
+
+.upload-card:hover {
+  border-color: #f0be08;
+  background: #fff4c8;
+  transform: translateY(-2px);
+}
+
+.upload-card input {
+  display: none;
+}
+
+.upload-card-full {
+  grid-column: span 2;
+}
+
+.upload-icon {
+  width: 44px;
+  height: 44px;
+  background: #f0be08;
+  color: white;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+}
+
+.upload-card strong {
+  color: #101827;
+  font-size: 15px;
+}
+
+.upload-card small {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+/* PLANES */
+
+.planes-section,
+.payment-section {
+  margin-top: 26px;
+}
+
+.planes-section h3,
+.payment-section h3 {
+  margin-bottom: 16px;
+  color: #101827;
+}
+
+.planes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+.plan-card {
+  border: 2px solid #e5e7eb;
+  background: #f8f8fb;
+  border-radius: 18px;
+  padding: 18px;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.plan-card input {
+  display: none;
+}
+
+.plan-card strong {
+  display: block;
+  font-size: 18px;
+  color: #101827;
+}
+
+.plan-card h4 {
+  font-size: 26px;
+  margin: 10px 0 6px;
+  color: #f0be08;
+}
+
+.plan-card p {
+  margin: 0;
+  color: #6b7280;
+}
+
+.plan-card.active {
+  border-color: #f0be08;
+  background: #fff8dd;
+  box-shadow: 0 8px 20px rgba(240,190,8,.18);
+}
+
+/* PAGO */
+
+.payment-section > .payment-section {
+  margin-top: 16px;
+}
+
+.payment-select {
+  margin-bottom: 8px;
+}
+
+.payment-info {
+  margin-top: 8px;
+  background: #fffaf0;
+  border: 1px solid #f4df84;
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.payment-info p {
+  margin: 6px 0;
+  color: #374151;
+  font-size: 14px;
+}
+
+/* BOTONES */
+
+.btn-registro {
+  width: 100%;
+  margin-top: 25px;
+  height: 56px;
+  border: none;
+  border-radius: 16px;
+  background: #f0be08;
+  color: #101827;
+  font-size: 17px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.btn-registro:disabled {
+  opacity: .65;
+  cursor: not-allowed;
+}
+
+.volver-inicio {
+  display: block;
+  margin-top: 18px;
+  text-align: center;
+  color: #101827;
+  text-decoration: none;
+  font-weight: 900;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 980px) {
+  .registro-page {
+    grid-template-columns: 1fr;
+    padding: 24px;
+  }
+
+  .registro-left {
+    min-height: auto;
+    gap: 60px;
+    padding: 35px;
+  }
+
+  .registro-hero-text h1 {
+    font-size: 36px;
+  }
+
+  .form-grid,
+  .upload-section,
+  .planes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-grid textarea,
+  .upload-card-full {
+    grid-column: span 1;
+  }
+}
+
+.planes-header {
+  margin-bottom: 18px;
+}
+
+.planes-header h3 {
+  margin: 0 0 8px;
+  font-size: 24px;
+  color: #f0be08;
+}
+
+.planes-header p {
+  margin: 0;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.plan-card {
+  position: relative;
+  border: 2px solid #e5e7eb;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 22px;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.plan-card:hover {
+  transform: translateY(-4px);
+  border-color: #f0be08;
+  box-shadow: 0 12px 28px rgba(0,0,0,.08);
+}
+
+.plan-card.active {
+  border-color: #f0be08;
+  background: #fffaf0;
+  box-shadow: 0 12px 28px rgba(240,190,8,.18);
+}
+
+.plan-card input {
+  display: none;
+}
+
+.plan-name {
+  display: block;
+  font-size: 20px;
+  font-weight: 900;
+  color: #101827;
+}
+
+.plan-card h4 {
+  font-size: 34px;
+  margin: 12px 0 8px;
+  color: #f0be08;
+}
+
+.plan-desc {
+  color: #6b7280;
+  min-height: 45px;
+  line-height: 1.4;
+}
+
+.plan-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 18px 0 0;
+}
+
+.plan-card li {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #374151;
+  font-weight: 700;
+}
+
+.plan-badge {
+  position: absolute;
+  top: -14px;
+  right: 18px;
+  background: #101827;
+  color: white;
+  padding: 7px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 900;
+}
+.plan-result{
+margin-top:8px;
+
+padding:14px;
+
+background:#faf9ff;
+
+border-radius:14px;
+
+font-size:13px;
+
+font-weight:800;
+
+color:#f0be08;
+
+text-align:center;
+
+border:1px solid #ece7ff;
+
+}
+.planes-footer{
+
+margin-top:8px;
+
+display:grid;
+
+grid-template-columns:
+repeat(3,1fr);
+
+gap:12px;
+
+}
+
+.planes-garantia{
+
+background:#f8f8fb;
+
+padding:10px;
+
+border-radius:14px;
+
+text-align:center;
+
+font-size:13px;
+
+font-weight:800;
+
+color:#090b0e;
+
+}
+.planes-section {
+  margin-bottom: 0 !important;
+}
+
+.planes-grid {
+  margin-bottom: 0 !important;
+}
+
+.payment-section {
+  margin-top: 6px !important;
+}
+
+.payment-section h3 {
+  margin-top: 0 !important;
+  margin-bottom: 10px !important;
+}
+
+.planes-footer {
+  margin-top: 6px !important;
+  margin-bottom: 6px !important;
+}
+.plan-card {
+  margin-bottom: 0 !important;
+}
+
+.plan-result {
+  margin-bottom: 0 !important;
+}
+
+.resumen-section{
+
+margin-top:14px;
+
+}
+
+.resumen-section h3{
+
+margin-bottom:10px;
+
+color:#101827;
+
+}
+
+.resumen-card{
+
+background:#f1ce89;
+
+border:1px solid #f4df84;
+
+padding:18px;
+
+border-radius:18px;
+
+}
+
+.resumen-row{
+
+display:flex;
+
+justify-content:space-between;
+
+margin-bottom:12px;
+
+}
+
+.resumen-row span{
+
+color:#11100c;
+
+}
+
+.resumen-row strong{
+
+color:#101827;
+
+}
+
+.resumen-row.total{
+
+font-size:22px;
+
+font-weight:900;
+
+}
+
+.resumen-beneficios{
+
+display:grid;
+
+gap:10px;
+
+margin-top:16px;
+
+}
+
+.resumen-beneficios div{
+
+background:white;
+
+padding:10px;
+
+border-radius:10px;
+
+}
+.resumen-section {
+  margin-bottom: 18px;
+}
+
+.resumen-card {
+  margin-bottom: 18px;
+}
+
+.payment-section input {
+  margin-top: 8px;
+}
+.password-wrapper {
+  width: 100%;
+}
+
+.password-help {
+  display: block;
+  margin-top: 4px;
+  color: #6b7280;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.password-help-error {
+  color: #dc2626;
+}
+
+.password-wrapper .password-input-container input {
+  min-height: 56px;
+}
+
+.password-wrapper:has(.password-help-error)
+  .password-input-container input {
+  border-color: #dc2626;
+}
+
+
+

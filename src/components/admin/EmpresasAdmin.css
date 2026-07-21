@@ -1,0 +1,158 @@
+.admin-table-card{
+    background:white;
+    border-radius:24px;
+    padding:28px;
+    box-shadow:0 10px 35px rgba(0,0,0,.06);
+}
+
+.admin-table-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:24px;
+}
+
+.admin-table-header input{
+    width:260px;
+    padding:12px 16px;
+    border-radius:14px;
+    border:1px solid #ddd;
+}
+
+.admin-table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.admin-table th{
+    background:#fafafa;
+    padding:16px;
+    text-align:left;
+}
+
+.admin-table td{
+    padding:18px 16px;
+    border-bottom:1px solid #f1f1f1;
+}
+
+.admin-logo{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    object-fit:cover;
+}
+
+.badge-plan{
+    padding:6px 14px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.badge-plan.premium{
+    background:#f0be08;
+    color:#111;
+}
+
+.badge-plan.pro{
+    background:#6f45e8;
+    color:white;
+}
+.admin-filters {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.admin-filters input,
+.admin-filters select {
+  height: 44px;
+  padding: 0 14px;
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
+  font-weight: 700;
+}
+.admin-action-btn {
+  width: 38px;
+  height: 38px;
+  border: none;
+  border-radius: 12px;
+  background: #f8fafc;
+  color: #101827;
+  display: inline-grid;
+  place-items: center;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 900;
+  margin-right: 6px;
+}
+
+.admin-action-btn:hover {
+  background: #f0be08;
+}
+
+.admin-action-btn.danger {
+  background: #fee2e2;
+}
+
+.admin-action-btn.success {
+  background: #dcfce7;
+}
+.admin-actions-menu {
+  position: relative;
+}
+
+.menu-trigger {
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 14px;
+  background: #f8fafc;
+  font-size: 22px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.menu-trigger:hover {
+  background: #f0be08;
+}
+
+.menu-dropdown {
+  position: absolute;
+  right: 0;
+  top: 48px;
+  z-index: 50;
+  width: 190px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 18px 45px rgba(0,0,0,.16);
+  padding: 8px;
+}
+
+.menu-dropdown a,
+.menu-dropdown button {
+  width: 100%;
+  border: none;
+  background: transparent;
+  text-align: left;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-weight: 500;
+  color: #101827;
+  text-decoration: none;
+  cursor: pointer;
+  display: block;
+}
+
+.menu-dropdown a:hover,
+.menu-dropdown button:hover {
+  background: #f8fafc;
+}
+
+.menu-dropdown .danger {
+  color: #dc2626;
+}
+
+.menu-dropdown .success {
+  color: #16a34a;
+}

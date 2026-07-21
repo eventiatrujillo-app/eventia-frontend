@@ -1,0 +1,46 @@
+.actividad-card {
+  margin-top: 28px;
+  background: white;
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: 0 14px 35px rgba(0,0,0,.06);
+}
+
+.actividad-card h2 {
+  margin-bottom: 20px;
+  color: #101827;
+}
+
+.actividad-item {
+  display: flex;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.actividad-item:last-child {
+  border-bottom: none;
+}
+
+.actividad-item span {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: #fff4cc;
+}
+
+.actividad-item strong {
+  color: #101827;
+}
+
+.actividad-item p {
+  margin: 4px 0;
+  color: #6b7280;
+}
+
+.actividad-item small {
+  color: #9ca3af;
+  font-weight: 700;
+}
