@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { obtenerEmpresaPorId } from '../services/empresaServices';
 import { obtenerGaleria } from '../services/galeriaService';
 import '../styles/empresaDetalle.css';
-import {obtenerValoraciones,crearValoracion} from '../services/valoracionService';
+import {obtenerValoraciones,crearValoracion} from '../services/ValoracionService';
 import api from '../services/api';
 import { obtenerDisponibilidad } from '../services/disponibilidadService';
 import { CATEGORY_COVERS } from '../config/categoryCovers';
