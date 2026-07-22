@@ -1,4 +1,5 @@
 import api from './api';
+
 /*********************************** */
 export const obtenerPendientes = async () => {
 
@@ -62,14 +63,25 @@ export const obtenerPagosPendientes =
 async () => {const res =await api.get('/admin/pagos/pendientes');
 return res.data;};
 /****************************************************** */
-export const aprobarPago =
-async (id) => {
-const res =
-await api.put(
-`/admin/pagos/${id}/aprobar`
-);
-return res.data;
+
+/******************************************************/
+export const aprobarPago = async (pagoId) => {
+  const token = localStorage.getItem('token');
+
+  const response = await api.put(
+    `/admin/pagos/${pagoId}/aprobar`,
+    {},
+    {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+  );
+
+  return response.data;
 };
+/*********************************************************/
+
 /*********************************************************/
 export const obtenerSuscripciones = async () => {
   const res = await api.get('/admin/suscripciones');

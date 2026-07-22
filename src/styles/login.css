@@ -277,3 +277,12 @@
 .login-password-field .password-toggle:hover {
   background: rgba(240, 190, 8, 0.15) !important;
 }
+/* Oculta el botón nativo de mostrar contraseña en Edge */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear {
+    display: none;
+}
+input::-ms-reveal,
+input::-ms-clear {
+    display: none;
+}
