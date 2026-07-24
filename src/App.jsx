@@ -25,6 +25,8 @@ function App() {
 
         <Route path="/empresa/:id" element={<EmpresaDetalle />} />
 
+        <Route path="/proveedor/:slug" element={<EmpresaDetalle />} />
+
         <Route path="/dashboard" element={<DashboardEmpresa />} />
 
         <Route path="/login" element={<Login />} />

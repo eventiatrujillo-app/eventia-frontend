@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { obtenerEmpresaPorId } from '../services/empresaServices';
+import { obtenerEmpresaPorId, obtenerEmpresaPorSlug } from '../services/empresaServices';
 import { obtenerGaleria } from '../services/galeriaService';
 import '../styles/empresaDetalle.css';
 import {obtenerValoraciones,crearValoracion} from '../services/ValoracionService';
@@ -13,7 +13,7 @@ import { LOGOS_URL,PORTADAS_URL,GALERIA_URL,VIDEOS_URL} from '../config/urls';
 
 
 export default function EmpresaDetalle() {
-  const { id } = useParams();
+  const { id , slug} = useParams();
   const [empresa, setEmpresa] = useState(null);
   const [galeria, setGaleria] = useState([]);
   const [valoraciones,setValoraciones]=useState([]);
@@ -37,7 +37,7 @@ export default function EmpresaDetalle() {
   
   useEffect(() => {
     cargarEmpresa();
-     registrarVisita(); }, [id]);
+     registrarVisita(); }, [id,slug]);
 
   useEffect(() => {
   if (fotoActual !== null) {
@@ -51,19 +51,24 @@ export default function EmpresaDetalle() {
 }, [fotoActual]);
   
   const cargarEmpresa = async () => {
-    const data = await obtenerEmpresaPorId(id);
+    const data = slug
+    ? await obtenerEmpresaPorSlug(slug)
+    : await obtenerEmpresaPorId(id);
+
     setEmpresa(data.empresa);
 
-    const fotos = await obtenerGaleria(id);
+    const empresaId = data.empresa.id;
+
+    const fotos = await obtenerGaleria(empresaId);
     setGaleria(fotos.fotos || []);
 
     /****/
-    const dataValoraciones =await obtenerValoraciones(id);
+    const dataValoraciones =await obtenerValoraciones(empresaId);
     setValoraciones(dataValoraciones.valoraciones || []);
     setPromedio(dataValoraciones.promedio || 0);
     setTotal(dataValoraciones.total|| 0);
 
-   const disp = await obtenerDisponibilidad(id);
+   const disp = await obtenerDisponibilidad(empresaId);
    setDisponibilidad(disp.disponibilidad || []);
    };
 
@@ -101,11 +106,12 @@ export default function EmpresaDetalle() {
 
    /*estadisticas*/
    const registrarVisita = async () => {
-  try {await api.post(
-      `/empresas/${id}/visita`);
-  } catch (error) {
-    console.log(error);
-  }
+  try {
+    if (!empresa) return;
+    await api.post(`/empresas/${empresa.id}/visita`);
+      } catch (error) {
+        console.log(error);
+      }
 };
 
 //whatsapp
@@ -408,28 +414,60 @@ const abrirWhatsapp = async (e) => {
       </p>
     </div>
 
-    <div className="premium-video-box">
-      {empresa.video ? (
-        <video
-          controls
-          preload="metadata"
-          playsInline
-          src={`${VIDEOS_URL}/${empresa.video}`}
-          className="premium-video-player"
-        />
-      ) : (
-        <>
-          <button type="button" className="play-premium-btn">
-            ▶
-          </button>
-          <div>
-            <strong>Video aún no disponible</strong>
-            <small>Este proveedor Premium todavía no subió su presentación.</small>
-          </div>
-        </>
-      )}
-    </div>    
-  </section> 
+<div className="premium-video-box">
+  {empresa.video ? (
+    <video
+      key={empresa.video}
+      controls
+      preload="metadata"
+      playsInline
+      crossOrigin="anonymous"
+      className="premium-video-player"
+      onLoadedMetadata={(event) => {
+        console.log(
+          'Video cargado:',
+          event.currentTarget.currentSrc,
+          'Duración:',
+          event.currentTarget.duration
+        );
+      }}
+      onError={(event) => {
+        const video = event.currentTarget;
+
+        console.error('No se pudo cargar el video:', {
+          url: video.currentSrc,
+          error: video.error,
+          networkState: video.networkState,
+          readyState: video.readyState
+        });
+      }}
+    >
+      <source
+        src={`${VIDEOS_URL}/${empresa.video}`}
+        type="video/mp4"
+      />
+
+      Tu navegador no permite reproducir este video.
+    </video>
+  ) : (
+    <>
+      <button type="button" className="play-premium-btn">
+        ▶
+      </button>
+
+      <div>
+        <strong>Video aún no disponible</strong>
+        <small>
+          Este proveedor Premium todavía no subió su presentación.
+        </small>
+      </div>
+    </>
+  )}
+</div>
+
+
+
+    </section> 
 )}
 
 <div className="detalle-card why-card-pro ev-hover-lift">

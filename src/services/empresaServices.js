@@ -19,3 +19,13 @@ export const obtenerEmpresaPorId = async (id) => {
 
   return response.json();
 };
+// NUEVA FUNCIÓN
+export const obtenerEmpresaPorSlug = async (slug) => {
+  const response = await fetch(`${API_URL}/empresas/slug/${slug}`);
+
+  if (!response.ok) {
+    throw new Error('No se pudo cargar la empresa');
+  }
+
+  return response.json();
+};

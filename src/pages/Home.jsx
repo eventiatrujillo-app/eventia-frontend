@@ -28,7 +28,15 @@ export default function Home() {
 
   const cargarEmpresas = async () => {
     const data = await obtenerEmpresas();
-     console.log(data.empresas);
+    
+    console.log("EMPRESAS:", data.empresas);
+    data.empresas.forEach((e) => {
+    console.log(
+      e.nombre_empresa,
+      "ID:", e.id,
+      "SLUG:", e.slug
+    );
+  });
     setEmpresas(data.empresas || []);
   };
 
@@ -172,10 +180,6 @@ const limpiarBusqueda = () => {
             <strong>EVENTIA</strong>
             <span>Proveedores para Eventos</span>
           </div>
-
-
-
-
         </Link>
 
         <nav>

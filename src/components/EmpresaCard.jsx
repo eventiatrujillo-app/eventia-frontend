@@ -30,7 +30,9 @@ export default function EmpresaCard({ empresa }) {
   
 
   return (
-    <Link to={`/empresa/${empresa.id}`} className="empresa-link">
+    <Link to={ empresa.slug
+      ? `/proveedor/${empresa.slug}`
+      : `/empresa/${empresa.id}` } className="empresa-link" >
       <article className="empresa-card">
         <div className="empresa-media">
           <img
