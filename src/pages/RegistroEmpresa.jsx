@@ -213,7 +213,7 @@ Presiona ACEPTAR para volver al inicio.`
             />
 
             <input
-              name="correo_eventia_registro"
+              name="email"
               type="email"
               autoComplete="email"
               value={form.email}
@@ -224,7 +224,7 @@ Presiona ACEPTAR para volver al inicio.`
 
             <div className="password-wrapper">
                 <PasswordInput
-                  name="clave_eventia_registro"
+                  name="password"
                   value={form.password}
                   placeholder="Crea una contraseña segura"
                   autoComplete="new-password"
