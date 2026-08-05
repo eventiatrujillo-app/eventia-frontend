@@ -37,7 +37,8 @@ export default function EmpresaDetalle() {
   
   useEffect(() => {
     cargarEmpresa();
-     registrarVisita(); }, [id,slug]);
+     //registrarVisita(); 
+    }, [id,slug]);
 
   useEffect(() => {
   if (fotoActual !== null) {
@@ -72,11 +73,44 @@ export default function EmpresaDetalle() {
    setDisponibilidad(disp.disponibilidad || []);
    };
 
-   const enviarValoracion =async ()=>{await crearValoracion(id,form);
+  /* const enviarValoracion =async ()=>{await crearValoracion(id,form);
    setForm({nombre_cliente:'',puntuacion:5,comentario:''});
    cargarEmpresa();
    alert('Gracias por valorar');
-   };
+   };*/
+   const enviarValoracion = async () => {
+
+  if (!empresa?.id) {
+    alert("No se encontró la empresa.");
+    return;
+  }
+
+  try {
+
+    await crearValoracion(
+      empresa.id,
+      form
+    );
+
+    setForm({
+      nombre_cliente: '',
+      puntuacion: 5,
+      comentario: ''
+    });
+
+    await cargarEmpresa();
+
+    alert("Gracias por valorar.");
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert("No se pudo registrar la valoración.");
+
+  }
+
+};
 
 /*enviar cotizacion*/ 
    const enviarCotizacion= async () => {
