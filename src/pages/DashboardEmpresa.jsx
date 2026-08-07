@@ -1171,13 +1171,14 @@ const portadaPreview =
   </div>
 )}
 
-{/* =====================================================
+{
+/* =====================================================
     CAMBIAR LOGO
 ===================================================== */}
 
 <div className="imagen-config-card">
 
-  <h3>🖼️ Logo de tu empresa</h3>
+  <h3>🖼️ Logo de tu Empresa</h3>
 
   <p>
     Puedes cambiar el logo que aparece en tu perfil público.
@@ -1200,17 +1201,21 @@ const portadaPreview =
   </div>
 
   <label className="imagen-upload-label">
+  <span className="upload-icon">🖼️</span>
 
-    Seleccionar nuevo logo
+  <strong>Seleccionar nuevo logo</strong>
 
-    <input
-      type="file"
-      accept="image/jpeg,image/png,image/webp"
-      onChange={seleccionarLogo}
-      hidden
-    />
+  <small>
+    Haz clic aquí para elegir una imagen
+  </small>
 
-  </label>
+  <input
+    type="file"
+    accept="image/jpeg,image/png,image/webp"
+    onChange={seleccionarLogo}
+    hidden
+  />
+</label>
 
   {nuevoLogo && (
     <p className="archivo-seleccionado">
@@ -1264,17 +1269,21 @@ const portadaPreview =
   </div>
 
   <label className="imagen-upload-label">
+  <span className="upload-icon">🌄</span>
 
-    Seleccionar nueva portada
+  <strong>Seleccionar nueva portada</strong>
 
-    <input
-      type="file"
-      accept="image/jpeg,image/png,image/webp"
-      onChange={seleccionarPortada}
-      hidden
-    />
+  <small>
+    Haz clic aquí para elegir una imagen
+  </small>
 
-  </label>
+  <input
+    type="file"
+    accept="image/jpeg,image/png,image/webp"
+    onChange={seleccionarPortada}
+    hidden
+  />
+</label>
 
   {nuevaPortada && (
     <p className="archivo-seleccionado">

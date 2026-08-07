@@ -1624,3 +1624,208 @@ display:block;
   border-radius: 12px;
   background: #f8fafc;
 }
+/* =====================================================
+   SELECTOR DE NUEVO LOGO
+   ===================================================== */
+
+.logo-upload-box {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 22px;
+
+  margin: 10px 0 16px;
+
+  border: 2px dashed #d1d5db;
+  border-radius: 16px;
+
+  background: #f8fafc;
+
+  text-align: center;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.logo-upload-box:hover {
+  border-color: #f0be08;
+  background: #fffdf3;
+  transform: translateY(-1px);
+}
+
+.logo-upload-box strong {
+  display: block;
+
+  color: #101827;
+
+  font-size: 16px;
+
+  font-weight: 900;
+
+  margin-bottom: 6px;
+}
+
+.logo-upload-box span {
+  display: block;
+
+  color: #6b7280;
+
+  font-size: 13px;
+
+  font-weight: 600;
+}
+
+/* Ocultar el input original */
+.logo-upload-box input[type="file"] {
+  display: none;
+}
+/* =====================================================
+   SELECTOR DE LOGO Y PORTADA
+   ===================================================== */
+
+.imagen-upload-label {
+  width: 100%;
+  min-height: 90px;
+  box-sizing: border-box;
+
+  margin: 18px 0 14px;
+  padding: 18px 20px;
+
+  border: 2px dashed #cbd5e1;
+  border-radius: 16px;
+
+  background: #f8fafc;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  text-align: center;
+
+  cursor: pointer;
+
+  transition:
+    border-color .2s ease,
+    background .2s ease,
+    transform .2s ease,
+    box-shadow .2s ease;
+}
+
+.imagen-upload-label:hover {
+  border-color: #f0be08;
+  background: #fffdf3;
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .07);
+
+  transform: translateY(-1px);
+}
+
+.imagen-upload-label:active {
+  transform: translateY(0);
+}
+
+.imagen-upload-label .upload-icon {
+  font-size: 27px;
+  line-height: 1;
+}
+
+.imagen-upload-label strong {
+  color: #101827;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.imagen-upload-label small {
+  color: #6b7280;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+
+/* =====================================================
+   ARCHIVO SELECCIONADO
+   ===================================================== */
+
+.archivo-seleccionado {
+  margin: 8px 0 14px;
+
+  padding: 10px 12px;
+
+  border-radius: 10px;
+
+  background: #f1f5f9;
+
+  color: #374151;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  word-break: break-word;
+}
+
+
+/* =====================================================
+   BOTONES ACTUALIZAR
+   ===================================================== */
+
+.imagen-config-card > button {
+  width: 100%;
+
+  min-height: 48px;
+
+  padding: 12px 20px;
+
+  border: none;
+  border-radius: 14px;
+
+  background: #f0be08;
+  color: #101827;
+
+  font-size: 15px;
+  font-weight: 900;
+
+  cursor: pointer;
+
+  opacity: 1;
+
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease,
+    opacity .2s ease;
+}
+
+.imagen-config-card > button:hover:not(:disabled) {
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 7px 18px rgba(0, 0, 0, .12);
+}
+
+.imagen-config-card > button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.imagen-config-card > button:disabled {
+  opacity: .55;
+  cursor: not-allowed;
+}
+
+
+/* Información de formatos */
+
+.imagen-config-card > small {
+  display: block;
+
+  margin-top: 10px;
+
+  color: #6b7280;
+
+  font-size: 12px;
+
+  text-align: center;
+}
