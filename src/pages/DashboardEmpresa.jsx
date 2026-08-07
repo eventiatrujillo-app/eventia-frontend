@@ -30,6 +30,13 @@ export default function DashboardEmpresa() {
   const [galeria, setGaleria] = useState([]);
   const [videoPremium, setVideoPremium] = useState(null);
 
+  const [nuevoLogo, setNuevoLogo] = useState(null);
+  const [nuevoLogoPreview, setNuevoLogoPreview] = useState(null);
+  const [nuevaPortada, setNuevaPortada] = useState(null);
+  const [nuevaPortadaPreview, setNuevaPortadaPreview] = useState(null);
+  const [subiendoLogo, setSubiendoLogo] = useState(false);
+  const [subiendoPortada, setSubiendoPortada] = useState(false);
+
   useEffect(() => {
     cargarEmpresa();
   }, []);
@@ -206,6 +213,170 @@ setDisponibilidad(prev=>prev.filter(f=>f.id!==id));
   const cot =await obtenerCotizaciones();
   setCotizaciones(cot.cotizaciones);
   };
+/*logo*/
+const seleccionarLogo = (e) => {
+  const archivo = e.target.files?.[0];
+
+  if (!archivo) return;
+
+  const tiposPermitidos = [
+    'image/jpeg',
+    'image/png',
+    'image/webp'
+  ];
+
+  if (!tiposPermitidos.includes(archivo.type)) {
+    alert('Solo se permiten imágenes JPG, PNG o WebP.');
+    e.target.value = '';
+    return;
+  }
+
+  if (archivo.size > 3 * 1024 * 1024) {
+    alert('El logo no puede superar los 3 MB.');
+    e.target.value = '';
+    return;
+  }
+
+  setNuevoLogo(archivo);
+
+  const preview = URL.createObjectURL(archivo);
+  setNuevoLogoPreview(preview);
+};
+/*portada*/
+const seleccionarPortada = (e) => {
+  const archivo = e.target.files?.[0];
+
+  if (!archivo) return;
+
+  const tiposPermitidos = [
+    'image/jpeg',
+    'image/png',
+    'image/webp'
+  ];
+
+  if (!tiposPermitidos.includes(archivo.type)) {
+    alert('Solo se permiten imágenes JPG, PNG o WebP.');
+    e.target.value = '';
+    return;
+  }
+
+  if (archivo.size > 6 * 1024 * 1024) {
+    alert('La portada no puede superar los 6 MB.');
+    e.target.value = '';
+    return;
+  }
+
+  setNuevaPortada(archivo);
+
+  const preview = URL.createObjectURL(archivo);
+  setNuevaPortadaPreview(preview);
+};
+/*actualiza logo */
+const actualizarLogo = async () => {
+  if (!nuevoLogo) {
+    alert('Selecciona un logo primero.');
+    return;
+  }
+
+  try {
+    setSubiendoLogo(true);
+
+    const formData = new FormData();
+
+    formData.append('logo', nuevoLogo);
+
+    const respuesta = await api.post(
+      '/empresas/logo',
+      formData
+    );
+
+    if (!respuesta.data.success) {
+      throw new Error(
+        respuesta.data.message ||
+        'No se pudo actualizar el logo'
+      );
+    }
+
+    alert('Logo actualizado correctamente.');
+
+    setNuevoLogo(null);
+    setNuevoLogoPreview(null);
+
+    await cargarEmpresa();
+
+  } catch (error) {
+
+    console.error(
+      'ERROR ACTUALIZAR LOGO:',
+      error
+    );
+
+    alert(
+      error.response?.data?.message ||
+      error.message ||
+      'No se pudo actualizar el logo.'
+    );
+
+  } finally {
+    setSubiendoLogo(false);
+  }
+};
+/*actualiza portada */
+const actualizarPortada = async () => {
+  if (!nuevaPortada) {
+    alert('Selecciona una portada primero.');
+    return;
+  }
+
+  try {
+    setSubiendoPortada(true);
+
+    const formData = new FormData();
+
+    formData.append(
+      'portada',
+      nuevaPortada
+    );
+
+    const respuesta = await api.post(
+      '/empresas/portada',
+      formData
+    );
+
+    if (!respuesta.data.success) {
+      throw new Error(
+        respuesta.data.message ||
+        'No se pudo actualizar la portada'
+      );
+    }
+
+    alert(
+      'Portada actualizada correctamente.'
+    );
+
+    setNuevaPortada(null);
+    setNuevaPortadaPreview(null);
+
+    await cargarEmpresa();
+
+  } catch (error) {
+
+    console.error(
+      'ERROR ACTUALIZAR PORTADA:',
+      error
+    );
+
+    alert(
+      error.response?.data?.message ||
+      error.message ||
+      'No se pudo actualizar la portada.'
+    );
+
+  } finally {
+    setSubiendoPortada(false);
+  }
+};
+
 //permisos empresas
 if (cargandoEmpresa) {
 
@@ -983,6 +1154,7 @@ const portadaPreview =
           })
         }
       />
+      
   </>
 
 ) : (
@@ -998,6 +1170,133 @@ const portadaPreview =
     </button>
   </div>
 )}
+
+{/* =====================================================
+    CAMBIAR LOGO
+===================================================== */}
+
+<div className="imagen-config-card">
+
+  <h3>🖼️ Logo de tu empresa</h3>
+
+  <p>
+    Puedes cambiar el logo que aparece en tu perfil público.
+  </p>
+
+  <div className="imagen-config-preview">
+
+    <img
+      src={
+        nuevoLogoPreview ||
+        (
+          empresa.logo
+            ? `${LOGOS_URL}/${empresa.logo}`
+            : LOGO_EVENTIA
+        )
+      }
+      alt="Logo de la empresa"
+    />
+
+  </div>
+
+  <label className="imagen-upload-label">
+
+    Seleccionar nuevo logo
+
+    <input
+      type="file"
+      accept="image/jpeg,image/png,image/webp"
+      onChange={seleccionarLogo}
+      hidden
+    />
+
+  </label>
+
+  {nuevoLogo && (
+    <p className="archivo-seleccionado">
+      📄 {nuevoLogo.name}
+    </p>
+  )}
+
+  <button
+    type="button"
+    onClick={actualizarLogo}
+    disabled={!nuevoLogo || subiendoLogo}
+  >
+    {subiendoLogo
+      ? 'Actualizando logo...'
+      : 'Actualizar logo'}
+  </button>
+
+  <small>
+    JPG, PNG o WebP · Máximo 3 MB
+  </small>
+
+</div>
+
+
+{/* =====================================================
+    CAMBIAR PORTADA
+===================================================== */}
+
+<div className="imagen-config-card">
+
+  <h3>🌄 Portada de tu empresa</h3>
+
+  <p>
+    Sube una imagen personalizada para mostrar en tu perfil.
+  </p>
+
+  <div className="portada-config-preview">
+
+    <img
+      src={
+        nuevaPortadaPreview ||
+        (
+          empresa.portada
+            ? `${PORTADAS_URL}/${empresa.portada}`
+            : portadaEventia
+        )
+      }
+      alt="Portada de la empresa"
+    />
+
+  </div>
+
+  <label className="imagen-upload-label">
+
+    Seleccionar nueva portada
+
+    <input
+      type="file"
+      accept="image/jpeg,image/png,image/webp"
+      onChange={seleccionarPortada}
+      hidden
+    />
+
+  </label>
+
+  {nuevaPortada && (
+    <p className="archivo-seleccionado">
+      📄 {nuevaPortada.name}
+    </p>
+  )}
+
+  <button
+    type="button"
+    onClick={actualizarPortada}
+    disabled={!nuevaPortada || subiendoPortada}
+  >
+    {subiendoPortada
+      ? 'Actualizando portada...'
+      : 'Actualizar portada'}
+  </button>
+
+  <small>
+    JPG, PNG o WebP · Máximo 6 MB
+  </small>
+
+</div>
 
 {permisos.puedeUsarPaginaWeb ? (
   <>

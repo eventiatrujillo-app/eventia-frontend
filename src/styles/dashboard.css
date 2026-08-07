@@ -1482,3 +1482,77 @@ background:#000;
 display:block;
 
 }
+/* =====================================================
+   CAMBIO PRODUCCIÓN - PORTADA + LOGO
+   ===================================================== */
+
+/* Contenedor de portada */
+.dashboard-cover-wrapper {
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+  background: #f3f4f6;
+}
+
+/* Portada */
+.dashboard-cover-wrapper .dashboard-portada,
+.preview-portada {
+  width: 100%;
+  height: 240px;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Logo de empresa */
+.preview-logo {
+  width: 96px;
+  height: 96px;
+  object-fit: cover;
+
+  border-radius: 50%;
+  border: 6px solid #fff;
+
+  margin-top: -48px;
+
+  position: relative;
+  z-index: 5;
+
+  background: #fff;
+
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.15);
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Ajuste del nombre debajo del logo */
+.preview-section h2 {
+  margin-top: 16px;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 600px) {
+
+  .dashboard-cover-wrapper {
+    height: 190px;
+  }
+
+  .dashboard-cover-wrapper .dashboard-portada,
+  .preview-portada {
+    height: 190px;
+  }
+
+  .preview-logo {
+    width: 82px;
+    height: 82px;
+    margin-top: -41px;
+    border-width: 5px;
+  }
+
+}
