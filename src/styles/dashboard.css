@@ -1575,3 +1575,52 @@ display:block;
   z-index: 10;
   pointer-events: auto;
 }
+/* =====================================================
+   PRODUCCIÓN - BOTONES LOGO / PORTADA
+   ===================================================== */
+
+/* Separación entre selector de archivo y botón */
+.form-section input[type="file"] {
+  margin-bottom: 12px !important;
+}
+
+/* Botones de actualizar */
+.form-section button {
+  opacity: 1 !important;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  transition: all 0.2s ease;
+}
+
+/* Estado normal */
+.form-section button:not(:disabled) {
+  opacity: 1 !important;
+  cursor: pointer !important;
+}
+
+/* Al pasar el mouse */
+.form-section button:not(:disabled):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+/* Botón realmente deshabilitado */
+.form-section button:disabled {
+  opacity: 0.55 !important;
+  cursor: not-allowed !important;
+}
+
+/* Separación entre botones */
+.form-section button + button {
+  margin-top: 10px;
+}
+.form-section input[type="file"] {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 16px !important;
+  padding: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  background: #f8fafc;
+}
