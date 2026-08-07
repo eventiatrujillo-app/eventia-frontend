@@ -1556,3 +1556,22 @@ display:block;
   }
 
 }
+/* CORRECCIÓN PRODUCCIÓN - BOTONES DEL FORMULARIO */
+
+.form-section {
+  position: relative;
+  z-index: 10;
+}
+
+.form-section button {
+  position: relative;
+  z-index: 20;
+  pointer-events: auto;
+}
+
+.form-section input,
+.form-section textarea {
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
+}
