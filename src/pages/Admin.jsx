@@ -47,7 +47,7 @@ export default function Admin() {
   const [planes, setPlanes] = useState([]);
   const [categorias, setCategorias] = useState([]);
 
-  useEffect(() => {
+  /*useEffect(() => {
     const usuario = JSON.parse(localStorage.getItem('usuario'));
 
     if (!usuario || usuario.rol !== 'ADMIN') {
@@ -56,9 +56,31 @@ export default function Admin() {
     }
 
     cargarTodo();
-  }, [navigate]);
+  }, [navigate]);*/
+  useEffect(() => {
 
-  const cargarTodo = async () => {
+  const usuario = JSON.parse(
+    localStorage.getItem('usuario')
+  );
+
+  if (!usuario || usuario.rol !== 'ADMIN') {
+    navigate('/admin-login');
+    return;
+  }
+
+  cargarTodo();
+
+  const intervalo = setInterval(() => {
+    cargarTodo();
+  }, 30000);
+
+  return () => {
+    clearInterval(intervalo);
+  };
+
+}, [navigate]);
+
+  /*const cargarTodo = async () => {
     try {
       const dashData = await obtenerDashboardAdmin();
       setStats(dashData.data || {});
@@ -93,12 +115,79 @@ export default function Admin() {
     } finally {
       setCargando(false);
     }
-  };
+  };*/
+const cargarTodo = async () => {
+  try {
 
-  const rechazar = async (id) => {
+    console.log('🔄 ACTUALIZANDO DASHBOARD ADMIN...');
+
+    const dashData = await obtenerDashboardAdmin();
+    console.log('📊 DASHBOARD:', dashData);
+    setStats(dashData.data || {});
+
+    const adminData = await listarEmpresasAdmin();
+    console.log('🏢 EMPRESAS:', adminData);
+    setEmpresasAdmin(adminData.empresas || []);
+
+    const pendientesData = await obtenerPendientes();
+    console.log('⏳ PENDIENTES:', pendientesData);
+    setEmpresasPendientes(pendientesData.empresas || []);
+
+    const pagosData = await obtenerPagosPendientes();
+    console.log('💰 PAGOS:', pagosData);
+    setPagos(pagosData.pagos || []);
+
+    const actividadData = await obtenerActividadReciente();
+    console.log('🕐 ACTIVIDAD:', actividadData);
+    setActividades(actividadData.actividades || []);
+
+    const videosData = await obtenerVideosPendientes();
+    console.log('🎥 VIDEOS:', videosData);
+    setVideosPendientes(videosData.videos || []);
+
+    const planesData = await obtenerPlanesAdmin();
+    console.log('📦 PLANES:', planesData);
+    setPlanes(planesData.planes || []);
+
+    const categoriasData = await obtenerCategorias();
+    console.log('📂 CATEGORÍAS:', categoriasData);
+    setCategorias(categoriasData.categorias || []);
+
+    const susData = await obtenerSuscripciones();
+    console.log('📅 SUSCRIPCIONES:', susData);
+    setSuscripciones(susData.suscripciones || []);
+
+    console.log('✅ DASHBOARD ACTUALIZADO');
+
+  } catch (error) {
+
+    console.error('❌ ERROR CARGANDO PANEL:', error);
+
+    alert('Error cargando panel administrador');
+
+  } finally {
+
+    setCargando(false);
+
+  }
+};
+  /*const rechazar = async (id) => {
     await rechazarEmpresa(id);
     cargarTodo();
-  };
+  };*/
+  const rechazar = async (id) => {
+  try {
+    await rechazarEmpresa(id);
+    alert('Empresa rechazada correctamente');
+    await cargarTodo();
+  } catch (error) {
+    console.error(
+      'Error rechazando empresa:',
+      error
+    );
+    alert('No se pudo rechazar la empresa');
+  }
+};
 
   const salir = () => {
     localStorage.removeItem('token');
@@ -216,10 +305,18 @@ export default function Admin() {
                 <button
                   className="approve-btn"
                   onClick={async () => {
+                  try {
                     await aprobarPago(pago.id);
                     alert('Empresa activada');
-                    cargarTodo();
-                  }}
+                    await cargarTodo();
+                  } catch (error) {
+                    console.error(
+                      'Error aprobando pago:',
+                      error
+                    );
+                    alert('No se pudo aprobar el pago');
+                  }
+                }}
                 >
                   Aprobar pago y activar
                 </button>
@@ -322,9 +419,18 @@ export default function Admin() {
                     className="approve-btn"
                     disabled={!emp.pago_id}
                     onClick={async () => {
+                    try {
                       await aprobarPago(emp.pago_id);
-                      cargarTodo();
-                    }}
+                      alert('Empresa activada correctamente');
+                      await cargarTodo();
+                    } catch (error) {
+                      console.error(
+                        'Error aprobando empresa:',
+                        error
+                      );
+                      alert('No se pudo activar la empresa');
+                    }
+                  }}
                   >
                     Confirmar pago y activar empresa
                   </button>
