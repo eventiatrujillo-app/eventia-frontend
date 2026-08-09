@@ -138,7 +138,9 @@ const cargarTodo = async () => {
     setPagos(pagosData.pagos || []);
 
     const actividadData = await obtenerActividadReciente();
-    console.log('🕐 ACTIVIDAD:', actividadData);
+    //console.log('🕐 ACTIVIDAD:', actividadData);
+    console.log('🔔 ACTIVIDAD RECIBIDA DEL BACKEND:', actividadData );
+    console.log('🔔 ACTIVIDADES:',actividadData.actividades);
     setActividades(actividadData.actividades || []);
 
     const videosData = await obtenerVideosPendientes();
