@@ -47,16 +47,7 @@ export default function Admin() {
   const [planes, setPlanes] = useState([]);
   const [categorias, setCategorias] = useState([]);
 
-  /*useEffect(() => {
-    const usuario = JSON.parse(localStorage.getItem('usuario'));
-
-    if (!usuario || usuario.rol !== 'ADMIN') {
-      navigate('/admin-login');
-      return;
-    }
-
-    cargarTodo();
-  }, [navigate]);*/
+  
   useEffect(() => {
 
   const usuario = JSON.parse(
@@ -80,42 +71,7 @@ export default function Admin() {
 
 }, [navigate]);
 
-  /*const cargarTodo = async () => {
-    try {
-      const dashData = await obtenerDashboardAdmin();
-      setStats(dashData.data || {});
-
-      const adminData = await listarEmpresasAdmin();
-      setEmpresasAdmin(adminData.empresas || []);
-
-      const pendientesData = await obtenerPendientes();
-      setEmpresasPendientes(pendientesData.empresas || []);
-
-      const pagosData = await obtenerPagosPendientes();
-      setPagos(pagosData.pagos || []);
-
-      const actividadData = await obtenerActividadReciente();
-      setActividades(actividadData.actividades || []);
-
-      const videosData = await obtenerVideosPendientes();
-      console.log('VIDEOS PENDIENTES ADMIN:', videosData);
-      setVideosPendientes(videosData.videos || []);
-
-      const planesData = await obtenerPlanesAdmin();
-      setPlanes(planesData.planes || []);
-
-      const categoriasData = await obtenerCategorias();
-      setCategorias(categoriasData.categorias || []);
-
-      const susData = await obtenerSuscripciones();
-      setSuscripciones(susData.suscripciones || []);
-    } catch (error) {
-      console.error(error);
-      alert('Error cargando panel administrador');
-    } finally {
-      setCargando(false);
-    }
-  };*/
+  
 const cargarTodo = async () => {
   try {
 
@@ -173,10 +129,7 @@ const cargarTodo = async () => {
 
   }
 };
-  /*const rechazar = async (id) => {
-    await rechazarEmpresa(id);
-    cargarTodo();
-  };*/
+  
   const rechazar = async (id) => {
   try {
     await rechazarEmpresa(id);
