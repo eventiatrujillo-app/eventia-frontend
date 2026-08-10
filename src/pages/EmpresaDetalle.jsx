@@ -572,6 +572,11 @@ const abrirWhatsapp = async (e) => {
         alt={`Trabajo realizado por ${empresa.nombre_empresa}`}
         loading="lazy"
         decoding="async"
+        onError={(e) => {
+          e.currentTarget.onerror = null;
+          e.currentTarget.style.display = 'none';
+        }}
+        
       />
 
       {esPremium && index === 4 && galeria.length > 5 && (

@@ -769,8 +769,8 @@ const portadaPreview =
               decoding="async"
               onError={(e) => {
                 e.currentTarget.onerror = null;
-                e.currentTarget.src =
-                  CATEGORY_COVERS.default;
+                 e.currentTarget.style.display = 'none';
+
               }}
             />
 
