@@ -350,9 +350,13 @@ const actualizarPortada = async () => {
       );
     }
 
-    alert(
-      'Portada actualizada correctamente.'
-    );
+    alert( 'Portada personalizada actualizada correctamente.');
+
+    setEmpresa((empresaActual) => ({
+      ...empresaActual,
+      portada: respuesta.data.portada,
+      usa_portada_eventia: false
+    }));
 
     setNuevaPortada(null);
     setNuevaPortadaPreview(null);
