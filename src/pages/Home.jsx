@@ -7,6 +7,7 @@ import instagram from "../assets/instagram.svg";
 import tiktok from "../assets/tiktok.svg";
 import '../styles/home.css';
 import { LOGO_EVENTIA } from '../config/logo';
+console.log('LOGO_EVENTIA:', LOGO_EVENTIA);
 import { obtenerCategoriasPublicas } from '../services/categoriaService';
 
 
