@@ -163,7 +163,7 @@ const handleChange = (e) => {
 };
   
   const guardar = async () => {
-  if (!/^\d{7}$/.test(empresa.telefono || '')) {
+  if (empresa.telefono && !/^\d{7}$/.test(empresa.telefono )) {
     alert('El teléfono debe tener exactamente 7 dígitos.');
     return;
   }
