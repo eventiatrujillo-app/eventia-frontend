@@ -382,18 +382,7 @@ const limpiarBusqueda = () => {
   </div>
 )}
 
-          <div className="quick-categories">
-            {categorias.map((cat) => (
-              <Link
-                key={cat.nombre}
-                to={`/categoria/${cat.nombre}`}
-                className="quick-category"
-              >
-                <span>{cat.icono}</span>
-                <small>{cat.nombre}</small>
-              </Link>
-            ))}
-          </div>
+          
 
         </div>
 
