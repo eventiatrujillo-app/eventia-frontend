@@ -173,6 +173,8 @@ const handleChange = (e) => {
       'El WhatsApp debe comenzar con 9 y tener exactamente 9 dígitos.'
     );
     return;
+    console.log('DATOS QUE SE ENVIARÁN:', empresa);
+    console.log('TELEFONO:', JSON.stringify(empresa.telefono));
   }
 
   try {
