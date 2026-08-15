@@ -7,12 +7,13 @@ import instagram from "../assets/instagram.svg";
 import tiktok from "../assets/tiktok.svg";
 import '../styles/home.css';
 import { LOGO_EVENTIA } from '../config/logo';
-console.log('LOGO_EVENTIA:', LOGO_EVENTIA);
+//console.log('LOGO_EVENTIA:', LOGO_EVENTIA);
 import { obtenerCategoriasPublicas } from '../services/categoriaService';
 
 
 export default function Home() {
   const [empresas, setEmpresas] = useState([]);
+  const [cargandoEmpresas, setCargandoEmpresas] = useState(true);
   const [busqueda, setBusqueda] = useState('');
   const [ubicacion, setUbicacion] = useState('');
   const [categoria, setCategoria] = useState('');
@@ -28,18 +29,21 @@ export default function Home() {
   }, []);
 
   const cargarEmpresas = async () => {
+  try {
+    setCargandoEmpresas(true);
+
     const data = await obtenerEmpresas();
-    
-    console.log("EMPRESAS:", data.empresas);
-    data.empresas.forEach((e) => {
-    console.log(
-      e.nombre_empresa,
-      "ID:", e.id,
-      "SLUG:", e.slug
-    );
-  });
+
     setEmpresas(data.empresas || []);
-  };
+
+  } catch (error) {
+    console.error('Error cargando empresas:', error);
+    setEmpresas([]);
+
+  } finally {
+    setCargandoEmpresas(false);
+  }
+};
 
   useEffect(() => {
   cargarCategorias();
@@ -381,11 +385,7 @@ const limpiarBusqueda = () => {
     </div>
   </div>
 )}
-
-          
-
-        </div>
-
+</div>
       </section>
 
       <section id="categorias" className="popular-section">
@@ -483,31 +483,35 @@ const limpiarBusqueda = () => {
     </p>
   </div>
 
-  {proveedoresAMostrar.length === 0 ? (
-    <div className="sin-resultados">
-      <h3>😕 No encontramos proveedores</h3>
+  {cargandoEmpresas ? (
+  <div className="cargando-proveedores">
+    <p>Cargando proveedores...</p>
+  </div>
+) : proveedoresAMostrar.length === 0 ? (
+  <div className="sin-resultados">
+    <h3>😕 No encontramos proveedores</h3>
 
-      <p>
-        No existen proveedores con los filtros seleccionados.
-      </p>
+    <p>
+      No existen proveedores con los filtros seleccionados.
+    </p>
 
-      <button
-        type="button"
-        onClick={limpiarBusqueda}
-      >
-        Limpiar búsqueda
-      </button>
-    </div>
-  ) : (
-    <div className="empresas-grid">
-      {proveedoresAMostrar.map((empresa) => (
-        <EmpresaCard
-          key={empresa.id}
-          empresa={empresa}
-        />
-      ))}
-    </div>
-  )}
+    <button
+      type="button"
+      onClick={limpiarBusqueda}
+    >
+      Limpiar búsqueda
+    </button>
+  </div>
+) : (
+  <div className="empresas-grid">
+    {proveedoresAMostrar.map((empresa) => (
+      <EmpresaCard
+        key={empresa.id}
+        empresa={empresa}
+      />
+    ))}
+  </div>
+)}
 </section>
 
    {!hayFiltrosActivos && (
