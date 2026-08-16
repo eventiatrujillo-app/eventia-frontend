@@ -131,7 +131,7 @@ const empresasFiltradas = empresas.filter((empresa) => {
   );
 });
 
-/*mejores proveedores */
+/*
   const mejoresProveedores = [...empresas]
   .sort((a, b) => {
     const prioridadPlan = {
@@ -146,7 +146,62 @@ const empresasFiltradas = empresas.filter((empresa) => {
       Number(b.total_valoraciones || 0) - Number(a.total_valoraciones || 0)
     );
   })
-  .slice(0, 3);
+  .slice(0, 3);*/
+  /* =====================================================
+   PROVEEDORES DESTACADOS
+   Todas las empresas activas:
+   PREMIUM + PRO + BÁSICO
+
+   Orden:
+   1. Más visitas
+   2. Mejor valoración promedio
+   3. Mayor cantidad de valoraciones
+===================================================== */
+
+const proveedoresOrdenados = [...empresas]
+  .sort((a, b) => {
+
+    const visitasA = Number(a.visitas || 0);
+    const visitasB = Number(b.visitas || 0);
+
+    const promedioA = Number(a.promedio || 0);
+    const promedioB = Number(b.promedio || 0);
+
+    const valoracionesA = Number(a.total_valoraciones || 0);
+    const valoracionesB = Number(b.total_valoraciones || 0);
+
+    return (
+      visitasB - visitasA ||
+      promedioB - promedioA ||
+      valoracionesB - valoracionesA
+    );
+  });
+
+
+/* =====================================================
+   MEJORES PROVEEDORES DEL MES
+   Solo los 3 primeros
+===================================================== */
+
+const mejoresProveedores =
+  proveedoresOrdenados.slice(0, 3);
+
+
+/* =====================================================
+   PROVEEDORES A MOSTRAR
+===================================================== */
+
+const hayFiltrosActivos = Boolean(
+  categoria ||
+  ubicacion ||
+  planFiltro ||
+  evento ||
+  servicioSugerido
+);
+
+const proveedoresAMostrar = hayFiltrosActivos
+  ? empresasFiltradas
+  : proveedoresOrdenados;
 
   const hayFiltrosActivos = Boolean(
   categoria ||
@@ -391,7 +446,7 @@ const limpiarBusqueda = () => {
       <section id="categorias" className="popular-section">
 
         <div className="section-header">
-          <h2>Categorías populares</h2>
+          <h2>Categorías Populares</h2>
         </div>
 
         <div className="popular-grid">
@@ -409,7 +464,7 @@ const limpiarBusqueda = () => {
 
               <div className="popular-info">
                 <h3>{cat.nombre}</h3>
-                <p>Proveedores disponibles</p>
+                <p>Proveedores Disponibles</p>
         </div>
       </Link>
     ))}
