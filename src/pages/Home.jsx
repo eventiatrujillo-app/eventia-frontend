@@ -203,18 +203,6 @@ const proveedoresAMostrar = hayFiltrosActivos
   ? empresasFiltradas
   : proveedoresOrdenados;
 
-  const hayFiltrosActivos = Boolean(
-  categoria ||
-  ubicacion ||
-  planFiltro ||
-  evento ||
-  servicioSugerido
-);
-
-const proveedoresAMostrar = hayFiltrosActivos
-  ? empresasFiltradas
-  : mejoresProveedores;
-
   
 
 const limpiarBusqueda = () => {
