@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import {useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import api from '../services/api';
 import '../styles/registroEmpresa.css';
@@ -28,8 +28,34 @@ export default function RegistroEmpresa() {
   }
   const [form, setForm] =useState(FORM_INICIAL);
   const [cargando, setCargando] = useState(false);
-  //const [mostrarPassword, setMostrarPassword] =useState(false);
+  const [categorias, setCategorias] = useState([]);
+  const [cargandoCategorias, setCargandoCategorias] = useState(true);
   const [errorPassword, setErrorPassword] = useState('');
+
+  useEffect(() => {
+  const cargarCategorias = async () => {
+    try {
+      setCargandoCategorias(true);
+      const response = await api.get('/categorias');
+      if (response.data.success) {
+        setCategorias(response.data.categorias);
+      } else {
+        setCategorias([]);
+      }
+
+    } catch (error) {
+      console.error(
+        'Error al cargar categorías:',
+        error
+      );
+      setCategorias([]);
+    } finally {
+      setCargandoCategorias(false);
+    }
+  };
+  cargarCategorias();
+
+}, []);
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -337,27 +363,23 @@ Presiona ACEPTAR para volver al inicio.`
               name="categoria"
               value={form.categoria}
               onChange={handleChange}
-              
+              required
             >
-              <option value="">Selecciona categoría</option>
-              <option value="DJ">🎵 DJ</option>
-              <option value="Barman">🍸 Barman</option>
-              <option value="Catering">🍽 Catering</option>
-              <option value="Local de Eventos">🏛 Local de Eventos</option>
-              <option value="Fotografía">📸 Fotografía</option>
-              <option value="Decoración">🎨 Decoración</option>
-              <option value="Spa">💄 Belleza / Spa</option>
-              <option value="Hora Loca">🎭 Hora Loca</option>
-              <option value="Eventos">🎪 Eventos</option>
-              <option value="Wedding Planner">💍 Wedding Planner</option>
-              <option value="Maestro Ceremonia">🎤 Maestro Ceremonia</option>
-              <option value="Orquesta Digital">🎼 Orquesta Digital</option>
-              <option value="Alquiler de Mobiliario">🪑 Alquiler de Mobiliario</option>
-              <option value="Seguridad">🛡️ Seguridad</option>
-              <option value="Transporte">🚐 Transporte</option>
-              <option value="Manicure-Pedicure">💅 Manicure-Pedicure / Spa</option>
-              <option value="Cabina360">📸Cabina360</option>
-              <option value="Shows Infantiles">🎈 Show Infantiles</option>
+              <option value="">
+                {cargandoCategorias
+                  ? 'Cargando categorías...'
+                  : 'Selecciona categoría'}
+              </option>
+
+              {categorias.map((categoria) => (
+                <option
+                  key={categoria.id}
+                  value={categoria.nombre}
+                >
+                  {categoria.icono ? `${categoria.icono} ` : ''}
+                  {categoria.nombre}
+                </option>
+              ))}
             </select>
 
           </div>
