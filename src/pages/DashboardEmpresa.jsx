@@ -423,23 +423,14 @@ if (errorEmpresa) {
 }
 
 if (!empresa) {
-
   return (
-
     <div className="dashboard-page">
-
       <h2>No existe empresa</h2>
-
       <p>
-
         Debes registrar una empresa primero.
-
       </p>
-
     </div>
-
   );
-
 }
  //planes empresa
  const permisos = {
@@ -682,16 +673,21 @@ const portadaPreview =
   <div className="galeria-dashboard-section">
 
     <h2>Galería de imágenes</h2>
-
     <div className="limite-plan-box">
-  <strong>
-    Plan actual: {empresa.plan || 'BASICO'}
-  </strong>
+    <strong>
+      Plan actual: {empresa.plan || 'BASICO'}
+    </strong>
+       <p>
+    📸 Has usado <strong>{galeria.length}</strong> de{' '}
+    <strong>{permisos.maxFotos}</strong> fotos.
+  </p>
 
   <p>
-    Has usado {galeria.length} de {permisos.maxFotos} fotos disponibles.
+    {permisos.maxFotos - galeria.length > 0
+      ? `Te quedan ${permisos.maxFotos - galeria.length} foto(s) disponibles.`
+      : 'Has alcanzado el máximo de fotos de tu plan.'}
   </p>
-</div>
+  </div>
 
     {empresa.estado === 'ACTIVO' ? (
   <>
@@ -701,49 +697,78 @@ const portadaPreview =
     </p>
 
     <input
-      type="file"
-      accept="image/jpeg,image/png,image/webp"
-      multiple
-      disabled={galeria.length >= permisos.maxFotos}
-      onChange={(e) => {
-        const disponibles =
-          permisos.maxFotos - galeria.length;
+          type="file"
+          accept="image/jpeg,image/png,image/webp"
+          multiple
+          disabled={galeria.length >= permisos.maxFotos}
+          onChange={(e) => {
 
-        const archivos = Array.from(
-          e.target.files || []
-        );
+            const disponibles =
+              permisos.maxFotos - galeria.length;
 
-        const tiposPermitidos = [
-          'image/jpeg',
-          'image/png',
-          'image/webp'
-        ];
+            if (disponibles <= 0) {
+              e.target.value = '';
+              setNuevasFotos([]);
+              return;
+            }
 
-        const archivosValidos = archivos.filter(
-          (archivo) => {
-            const formatoValido =
-              tiposPermitidos.includes(archivo.type);
+            const archivos = Array.from(
+              e.target.files || []
+            );
 
-            const pesoValido =
-              archivo.size <= 5 * 1024 * 1024;
+            const tiposPermitidos = [
+              'image/jpeg',
+              'image/png',
+              'image/webp'
+            ];
 
-            return formatoValido && pesoValido;
-          }
-        );
+            const archivosValidos = archivos.filter(
+              (archivo) => {
 
-        if (
-          archivosValidos.length !== archivos.length
-        ) {
-          alert(
-            'Solo se permiten imágenes JPG, PNG o WebP de máximo 5 MB.'
-          );
-        }
+                const formatoValido =
+                  tiposPermitidos.includes(archivo.type);
 
-        setNuevasFotos(
-          archivosValidos.slice(0, disponibles)
-        );
-      }}
-    />
+                const pesoValido =
+                  archivo.size <= 5 * 1024 * 1024;
+
+                return formatoValido && pesoValido;
+              }
+            );
+
+            if (
+              archivosValidos.length !== archivos.length
+            ) {
+              alert(
+                'Solo se permiten imágenes JPG, PNG o WebP de máximo 5 MB.'
+              );
+            }
+
+            // Máximo 7 imágenes por cada carga
+            const maximoPorCarga = 7;
+
+            // No permitir superar el límite total del plan
+            const cantidadPermitida = Math.min(
+              maximoPorCarga,
+              disponibles
+            );
+
+            if (
+              archivosValidos.length > cantidadPermitida
+            ) {
+              alert(
+                `Puedes seleccionar hasta ${cantidadPermitida} foto(s) en esta carga.`
+              );
+            }
+
+            setNuevasFotos(
+              archivosValidos.slice(
+                0,
+                cantidadPermitida
+              )
+            );
+
+          }}
+        />
 
     <button
       type="button"
