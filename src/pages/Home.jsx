@@ -7,7 +7,6 @@ import instagram from "../assets/instagram.svg";
 import tiktok from "../assets/tiktok.svg";
 import '../styles/home.css';
 import { LOGO_EVENTIA } from '../config/logo';
-//console.log('LOGO_EVENTIA:', LOGO_EVENTIA);
 import { obtenerCategoriasPublicas } from '../services/categoriaService';
 
 
@@ -77,7 +76,7 @@ const serviciosPorEvento = {
   quinceaños: ['Decoración', 'DJ', 'Fotografía', 'Catering', 'Spa'],
   babyshower: ['Decoración', 'Fotografía', 'Catering'],
   graduación: ['DJ', 'Fotografía', 'Catering', 'Local de Eventos'],
-  corporativo: ['Local de Eventos', 'Catering', 'Fotografía', 'Barman'],
+  corporativo: ['Local de Eventos', 'Catering', 'Fotografía'],
   aniversario: ['Decoración', 'DJ', 'Barman', 'Catering'],
   fiesta: ['DJ', 'Barman', 'Catering', 'Fotografía']
 };
@@ -131,22 +130,7 @@ const empresasFiltradas = empresas.filter((empresa) => {
   );
 });
 
-/*
-  const mejoresProveedores = [...empresas]
-  .sort((a, b) => {
-    const prioridadPlan = {
-      PREMIUM: 3,
-      PRO: 2,
-      BASICO: 1
-    };
 
-    return (
-      (prioridadPlan[b.plan] || 0) - (prioridadPlan[a.plan] || 0) ||
-      Number(b.promedio || 0) - Number(a.promedio || 0) ||
-      Number(b.total_valoraciones || 0) - Number(a.total_valoraciones || 0)
-    );
-  })
-  .slice(0, 3);*/
   /* =====================================================
    PROVEEDORES DESTACADOS
    Todas las empresas activas:
@@ -278,7 +262,7 @@ const limpiarBusqueda = () => {
 
     }}
   >
-    🔎 Buscar proveedor
+    🔎 Buscar Proveedor
   </button>
 
   <button
@@ -293,7 +277,7 @@ const limpiarBusqueda = () => {
 
     }}
   >
-    🎉 Organizar evento
+    🎉 Organizar Evento
   </button>
 
 </div>
@@ -412,8 +396,7 @@ const limpiarBusqueda = () => {
 
 {modoBusqueda === 'evento' && evento && (
   <div className="servicios-sugeridos">
-    <h3>Para este evento podrías necesitar:</h3>
-
+    <h3>Para este Evento podrías Necesitar:</h3>
     <div>
       {serviciosPorEvento[evento]?.map((servicio) => (
         <button
@@ -499,7 +482,7 @@ const limpiarBusqueda = () => {
         <div className="provider-cta">
 
           <div>
-            <h2>¿Eres proveedor?</h2>
+            <h2>¿Eres PROVEEDOR?</h2>
             <p>Únete a EVENTIA y haz crecer tu Negocio.</p>
           </div>
 
@@ -532,7 +515,7 @@ const limpiarBusqueda = () => {
   </div>
 ) : proveedoresAMostrar.length === 0 ? (
   <div className="sin-resultados">
-    <h3>😕 No encontramos proveedores</h3>
+    <h3>😕 No encontramos Proveedores</h3>
 
     <p>
       No existen proveedores con los filtros seleccionados.
@@ -592,7 +575,7 @@ const limpiarBusqueda = () => {
             con los mejores Proveedores.
           </p>
           <p>Comunicate con Nosotros</p>
-          <p>Email  : eventia.trujillo@gmail.com</p>
+          <p>Email: eventia.trujillo@gmail.com</p>
         </div>
 
         <div>
