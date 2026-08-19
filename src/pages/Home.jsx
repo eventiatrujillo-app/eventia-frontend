@@ -82,7 +82,7 @@ const sinonimosBusqueda = {
   quinceañero: ['decoracion', 'fotografia', 'dj', 'catering', 'spa'],
   quinceanero: ['decoracion', 'fotografia', 'dj', 'catering', 'spa'],
   fiesta: ['dj', 'barman', 'catering', 'decoracion', 'fotografia'],
-  babyshower: ['decoracion', 'catering', 'fotografia'],
+   'baby shower': ['decoracion', 'catering', 'fotografia'],
   graduacion: ['dj', 'barman', 'fotografia', 'catering']
 };
 
@@ -90,7 +90,7 @@ const serviciosPorEvento = {
   boda: ['Local de Eventos', 'Catering', 'DJ', 'Fotografía', 'Decoración', 'Barman', 'Spa'],
   cumpleaños: ['Decoración', 'Catering', 'DJ', 'Barman', 'Fotografía'],
   quinceaños: ['Decoración', 'DJ', 'Fotografía', 'Catering', 'Spa'],
-  babyshower: ['Decoración', 'Fotografía', 'Catering'],
+  'baby shower': ['Decoración', 'Fotografía', 'Catering'],
   graduación: ['DJ', 'Fotografía', 'Catering', 'Local de Eventos'],
   corporativo: ['Local de Eventos', 'Catering', 'Fotografía'],
   aniversario: ['Decoración', 'DJ', 'Barman', 'Catering'],
