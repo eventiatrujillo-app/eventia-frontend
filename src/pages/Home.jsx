@@ -56,6 +56,22 @@ const cargarCategorias = async () => {
     console.error('Error cargando categorías:', error);
   }
 };
+/* =====================================================
+   SCROLL AUTOMÁTICO A PROVEEDORES
+   Cuando el usuario selecciona un servicio sugerido
+===================================================== */
+useEffect(() => {
+  if (!servicioSugerido) return;
+
+  const timer = setTimeout(() => {
+    document.getElementById('proveedores')?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  }, 150);
+
+  return () => clearTimeout(timer);
+}, [servicioSugerido]);
 
 /*Buscador inteligente */
 const sinonimosBusqueda = {
